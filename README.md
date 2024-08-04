@@ -1,3 +1,4 @@
-Java 17 
+Run with Java 17 
 mvn spring-boot:run
-Without any security
+Used Database --> SQL
+Database name - event_management
