@@ -38,12 +38,16 @@ public class EventService {
 
     }
 
+    public void deleteAll() {
+        eventRepository.deleteAll();
+    }
+
     public Optional<Event> findById(Long id) {
         return eventRepository.findById(id);
     }
 
-    public Event updateEvent(Long id, Event eventDetails) {
-        Optional<Event> optionalEvent = eventRepository.findById(id);
+    public Event updateEvent(Event eventDetails) {
+        Optional<Event> optionalEvent = eventRepository.findById(eventDetails.getId());
         if (optionalEvent.isPresent()) {
             Event existingEvent = optionalEvent.get();
 
@@ -83,10 +87,9 @@ public class EventService {
                     existingEvent.setVenue(venueDetails);
                 }
             }
-
             return eventRepository.save(existingEvent);
         } else {
-            throw new EntityNotFoundException("Event with ID " + id + " not found");
+            throw new EntityNotFoundException("Event with ID not found" + eventDetails.getId());
         }
     }
 

@@ -30,42 +30,39 @@ public class EventController {
 
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateEvent(@PathVariable Long id,  @RequestBody Event event) {
-        Event event1 = eventService.updateEvent(id,  event);
+    @PutMapping
+    public ResponseEntity<Object> updateEvent(@RequestBody Event event) {
+        Event event1 = eventService.updateEvent(event);
         return new ResponseEntity<>(event1, HttpStatus.OK);
 
 
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteByIdEvent(@PathVariable  Long id){
-        eventService.deleteEventById(id);
-        return new ResponseEntity<>("Event deleted", HttpStatus.OK );
+    @DeleteMapping
+    public ResponseEntity<Object> deleteAll() {
+        eventService.deleteAll();
+        return new ResponseEntity<>("All Event deleted", HttpStatus.OK);
 
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteByIdEvent(@PathVariable Long id) {
+        eventService.deleteEventById(id);
+        return new ResponseEntity<>("Event deleted", HttpStatus.OK);
+
+    }
+
     @GetMapping("/venue/{venueId}")
-    public ResponseEntity<Object> listOfEvent(@PathVariable Long venueId){
+    public ResponseEntity<Object> listOfEvent(@PathVariable Long venueId) {
         List<Event> eventList = eventService.findByVenue_Id(venueId);
         return new ResponseEntity<>(eventList, HttpStatus.OK);
 
     }
+
     @GetMapping("/organizer/{organizerId}")
-    public ResponseEntity<Object> listOfEvents(@PathVariable Long organizerId){
+    public ResponseEntity<Object> listOfEvents(@PathVariable Long organizerId) {
         List<Event> eventList = eventService.findByOrganizer_Id(organizerId);
         return new ResponseEntity<>(eventList, HttpStatus.OK);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
