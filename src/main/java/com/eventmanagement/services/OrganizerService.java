@@ -13,7 +13,6 @@ public class OrganizerService {
     private OrganizerRepository organizerRepository;
 
 
-
     public Organizer createOrganizer(Organizer organizer) {
         return organizerRepository.save(organizer);
 

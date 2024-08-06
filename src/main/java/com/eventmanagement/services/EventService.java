@@ -65,7 +65,7 @@ public class EventService {
             if (eventDetails.getOrganizer() != null) {
                 Organizer organizerDetails = eventDetails.getOrganizer();
                 Organizer existingOrganizer = existingEvent.getOrganizer();
-                if (existingOrganizer != null && organizerDetails.getId() != null && existingOrganizer.getId().equals(organizerDetails.getId())) {
+                if (existingOrganizer != null) {
                     existingOrganizer.setName(organizerDetails.getName());
                     existingOrganizer.setContactInfo(organizerDetails.getContactInfo());
                     organizerRepository.save(existingOrganizer);
@@ -78,7 +78,7 @@ public class EventService {
             if (eventDetails.getVenue() != null) {
                 Venue venueDetails = eventDetails.getVenue();
                 Venue existingVenue = existingEvent.getVenue();
-                if (existingVenue != null && venueDetails.getId() != null && existingVenue.getId().equals(venueDetails.getId())) {
+                if (existingVenue != null) {
                     existingVenue.setName(venueDetails.getName());
                     existingVenue.setLocation(venueDetails.getLocation());
                     venueRepository.save(existingVenue);
